@@ -136,3 +136,11 @@ College Project – FarmKart
 ## 📄 License
 
 This project is intended for educational purposes only.
+
+---
+
+## 📁 Project Documentation
+
+- Project PPT available in `/docs`
+- Screenshots of the application in `/docs/screenshots`
+- ER Diagram included in `/docs`
