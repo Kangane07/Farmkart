@@ -96,14 +96,8 @@ The ER diagram visually represents these relationships and was created as part o
 3. Create and activate a virtual environment
 4. Install required dependencies:
 pip install -r requirements.txt
-
-markdown
-Copy code
 5. Run the Flask application:
 python app.py
-
-markdown
-Copy code
 6. Open your browser and visit:
 http://127.0.0.1:5000/
 
