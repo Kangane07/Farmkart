@@ -68,9 +68,6 @@ FarmKart/
 │ ├── cart.html
 │ └── checkout.html
 
-yaml
-Copy code
-
 ---
 
 ## 📊 Database Design (ER Diagram)
@@ -109,9 +106,6 @@ markdown
 Copy code
 6. Open your browser and visit:
 http://127.0.0.1:5000/
-
-yaml
-Copy code
 
 ---
 
