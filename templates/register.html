@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <script>
+        function toggleDark() {
+            document.body.classList.toggle("dark");
+            localStorage.setItem("theme",
+                document.body.classList.contains("dark") ? "dark" : "light");
+        }
+        window.onload = function () {
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.classList.add("dark");
+            }
+        };
+    </script>
+</head>
+<body>
+
+<nav>
+    <h1>🌱 FarmKart</h1>
+    <span class="toggle" onclick="toggleDark()">🌙</span>
+</nav>
+
+<div class="container">
+    <form method="post">
+        <h2>Register</h2>
+        <input name="name" placeholder="Full Name" required>
+        <input name="email" type="email" placeholder="Email" required>
+        <input name="password" type="password" placeholder="Password" required>
+
+        <select name="role" required>
+            <option value="">Select Role</option>
+            <option value="farmer">Farmer</option>
+            <option value="consumer">Consumer</option>
+        </select>
+
+        <button>Register</button>
+    </form>
+</div>
+
+</body>
+</html>

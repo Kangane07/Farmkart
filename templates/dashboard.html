@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <script>
+        function toggleDark() {
+            document.body.classList.toggle("dark");
+            localStorage.setItem("theme",
+                document.body.classList.contains("dark") ? "dark" : "light");
+        }
+        window.onload = function () {
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.classList.add("dark");
+            }
+        };
+    </script>
+</head>
+<body>
+
+<nav>
+    <h1>🌱 FarmKart</h1>
+    <div>
+        <a href="/">Home</a>
+        <a href="/logout">Logout</a>
+        <span class="toggle" onclick="toggleDark()">🌙</span>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>Welcome, {{ session['user'] }}</h2>
+
+    {% if session['role'] == 'farmer' %}
+        <a href="/add_product">
+            <button>Add Product</button>
+        </a>
+    {% else %}
+        <a href="/cart">
+            <button>View Cart</button>
+        </a>
+    {% endif %}
+</div>
+
+</body>
+</html>

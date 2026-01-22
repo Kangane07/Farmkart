@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Product</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <script>
+        function toggleDark() {
+            document.body.classList.toggle("dark");
+            localStorage.setItem("theme",
+                document.body.classList.contains("dark") ? "dark" : "light");
+        }
+        window.onload = function () {
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.classList.add("dark");
+            }
+        };
+    </script>
+</head>
+<body>
+
+<nav>
+    <h1>🌱 FarmKart</h1>
+    <span class="toggle" onclick="toggleDark()">🌙</span>
+</nav>
+
+<div class="container">
+    <form method="post">
+        <h2>Add Product</h2>
+        <input name="name" placeholder="Product Name" required>
+        <input name="price" type="number" placeholder="Price" required>
+        <input name="quantity" type="number" placeholder="Quantity" required>
+        <button>Add</button>
+    </form>
+</div>
+
+</body>
+</html>

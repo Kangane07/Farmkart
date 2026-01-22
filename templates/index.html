@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FarmKart</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <script>
+        function toggleDark() {
+            document.body.classList.toggle("dark");
+            localStorage.setItem("theme",
+                document.body.classList.contains("dark") ? "dark" : "light");
+        }
+        window.onload = function () {
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.classList.add("dark");
+            }
+        };
+    </script>
+</head>
+<body>
+
+<nav>
+    <h1>🌱 FarmKart</h1>
+    <div>
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+        <span class="toggle" onclick="toggleDark()">🌙</span>
+    </div>
+</nav>
+
+<section class="hero">
+    <h2>Fresh from Farm. Direct to You.</h2>
+    <p>No middlemen. Only freshness.</p>
+</section>
+
+<div class="container">
+    <div class="products">
+        {% for p in products %}
+        <div class="card">
+            <span class="badge">👨‍🌾 Farmer</span>
+            <h3>{{ p.name }}</h3>
+            <p>₹ {{ p.price }}</p>
+            <p>Qty: {{ p.quantity }}</p>
+            <p>By {{ p.farmer_name }}</p>
+
+            {% if session.get("role") == "consumer" %}
+            <a href="/add_to_cart/{{ p.id }}">
+                <button>Add to Cart</button>
+            </a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>
