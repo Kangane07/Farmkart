@@ -59,16 +59,16 @@ FarmKart/
 │── models.py
 │── requirements.txt
 │── static/
-│ └── css/
-│ └── style.css
+│   └── css/
+│       └── style.css
 │── templates/
-│ ├── index.html
-│ ├── login.html
-│ ├── register.html
-│ ├── dashboard.html
-│ ├── add_product.html
-│ ├── cart.html
-│ └── checkout.html
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   ├── dashboard.html
+│   ├── add_product.html
+│   ├── cart.html
+│   └── checkout.html
 
 ---
 
