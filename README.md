@@ -1,9 +1,5 @@
 # 🌾 FarmKart
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-![Python](https://img.shields.io/badge/Python-3.x-blue.svg)
-![Flask](https://img.shields.io/badge/Flask-Web%20Framework-blue)
-![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-blue)
-![Status](https://img.shields.io/badge/Project-College%20Project-blue)
 
 FarmKart is a full-stack web application developed as a college project.  
 It connects farmers directly with consumers, allowing the sale of fresh vegetables and fruits without middlemen.
