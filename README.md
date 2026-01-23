@@ -43,6 +43,7 @@ This project focuses on clarity, simplicity, and real-world applicability.
 - JavaScript
 
 ### Database
+- PostgreSQL
 - SQLite
 
 ### Tools
