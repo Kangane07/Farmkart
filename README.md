@@ -54,22 +54,22 @@ This project focuses on clarity, simplicity, and real-world applicability.
 
 ## 📂 Project Structure
 
-FarmKart/
-│── app.py
-│── models.py
-│── requirements.txt
-│── static/
-│   └── css/
-│       └── style.css
-│── templates/
-│   ├── index.html
-│   ├── login.html
-│   ├── register.html
-│   ├── dashboard.html
-│   ├── add_product.html
-│   ├── cart.html
-│   └── checkout.html
 
+FarmKart/
+├── app.py
+├── models.py
+├── requirements.txt
+├── static/
+│ └── css/
+│ └── style.css
+└── templates/
+├── index.html
+├── login.html
+├── register.html
+├── dashboard.html
+├── add_product.html
+├── cart.html
+└── checkout.html
 ---
 
 ## 📊 Database Design (ER Diagram)
