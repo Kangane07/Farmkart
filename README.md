@@ -1,3 +1,5 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 # 🌾 FarmKart
 
 FarmKart is a full-stack web application developed as a college project.  
