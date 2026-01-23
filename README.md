@@ -137,7 +137,8 @@ College Project – FarmKart
 
 ## 📄 License
 
-This project is intended for educational purposes only.
+This project is licensed under the MIT License.  
+See the [LICENSE](LICENSE) file for details.
 
 ---
 
