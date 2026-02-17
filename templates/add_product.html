@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Add Product{% endblock %}
+{% block content %}
+<section class="auth-wrap">
+    <form method="post" class="auth-card">
+        <h2>Add Product</h2>
+        <p>Publish your produce for buyers.</p>
+        <input name="name" placeholder="Product Name" required>
+        <input name="price" type="number" min="1" placeholder="Price" required>
+        <input name="quantity" type="number" min="1" placeholder="Quantity" required>
+        <button type="submit">Publish Product</button>
+    </form>
+</section>
+{% endblock %}

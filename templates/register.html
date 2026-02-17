@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<section class="auth-wrap">
+    <form method="post" class="auth-card">
+        <h2>Create Account</h2>
+        <p>Join as a farmer or consumer.</p>
+        <input name="name" placeholder="Full Name" required>
+        <input name="email" type="email" placeholder="Email" required>
+        <input name="password" type="password" placeholder="Password" required>
+        <select name="role" required>
+            <option value="">Select Role</option>
+            <option value="farmer">Farmer</option>
+            <option value="consumer">Consumer</option>
+        </select>
+        <button type="submit">Create Account</button>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FarmKart{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        function toggleDark() {
+            document.body.classList.toggle("dark");
+            localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+        }
+
+        window.onload = function () {
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.classList.add("dark");
+            }
+        };
+    </script>
+</head>
+<body>
+<header class="topbar">
+    <a class="brand" href="{{ url_for('index') }}">
+        <span class="brand-mark">FK</span>
+        <span>FarmKart Fresh</span>
+    </a>
+
+    <form class="search" method="get" action="{{ url_for('index') }}">
+        <input type="text" name="q" value="{{ query_text or '' }}" placeholder="Search vegetables, grains, fruits...">
+        <button type="submit">Search</button>
+    </form>
+
+    <nav class="links">
+        <a href="{{ url_for('index') }}">Home</a>
+        {% if session.get('user_id') %}
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            {% if session.get('role') == 'consumer' %}
+                <a href="{{ url_for('cart') }}">Cart ({{ cart_count }})</a>
+                <a href="{{ url_for('orders') }}">My Orders</a>
+            {% endif %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+        <button type="button" class="theme-btn" onclick="toggleDark()">Theme</button>
+    </nav>
+</header>
+<div class="market-strip">
+    <span>Farm fresh produce</span>
+    <span>Daily harvest listing</span>
+    <span>Transparent stock and pricing</span>
+</div>
+
+<main class="page">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-wrap">
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

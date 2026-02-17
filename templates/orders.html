@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}My Orders{% endblock %}
+{% block content %}
+<section class="panel">
+    <h2>My Orders</h2>
+    <p class="empty">Track all your placed orders here.</p>
+</section>
+
+{% for order in orders %}
+<section class="panel">
+    <div class="order-head">
+        <h3>Order #{{ order.id }}</h3>
+        <p><strong>Total:</strong> Rs {{ order.total_amount }}</p>
+    </div>
+    <p class="seller">Placed on {{ order.created_at.strftime('%d %b %Y, %I:%M %p') if order.created_at else '-' }}</p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order.items %}
+                <tr>
+                    <td>{{ item.product_name }}</td>
+                    <td>Rs {{ item.unit_price }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>Rs {{ item.subtotal }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% else %}
+<section class="panel">
+    <p class="empty">No orders placed yet.</p>
+    <a href="{{ url_for('index') }}"><button class="inline-btn">Start Shopping</button></a>
+</section>
+{% endfor %}
+{% endblock %}

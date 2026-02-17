@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}FarmKart Marketplace{% endblock %}
+{% block content %}
+<section class="hero">
+    <div class="hero-main">
+        <p class="hero-tag">Farm to Home Grocery Marketplace</p>
+        <h1>Fresh Produce, Better Prices, Direct from Farmers</h1>
+        <p class="hero-copy">Buy vegetables, fruits, grains and staples directly from verified local farmers with live stock visibility.</p>
+        <div class="hero-cta-row">
+            <a href="#products"><button type="button">Shop Now</button></a>
+            <a href="{{ url_for('register') }}"><button type="button" class="ghost-btn">Become a Seller</button></a>
+        </div>
+    </div>
+    <div class="hero-metrics">
+        <div><strong>{{ products|length }}</strong><span>Live Products</span></div>
+        <div><strong>Same Day</strong><span>Local Delivery Ready</span></div>
+        <div><strong>100%</strong><span>Direct Sourcing</span></div>
+    </div>
+</section>
+
+<section class="benefit-grid">
+    <article>
+        <h3>Verified Farmers</h3>
+        <p>Every listing comes from registered growers on the platform.</p>
+    </article>
+    <article>
+        <h3>Real-Time Inventory</h3>
+        <p>Stock quantities are updated automatically after each order.</p>
+    </article>
+    <article>
+        <h3>Freshness First</h3>
+        <p>Short supply chain means produce reaches you quickly.</p>
+    </article>
+</section>
+
+<section class="chip-row">
+    <span>Leafy Vegetables</span>
+    <span>Fruits</span>
+    <span>Grains</span>
+    <span>Pulses</span>
+    <span>Organic Picks</span>
+</section>
+
+<section class="section-head" id="products">
+    <h2>Fresh Picks For You</h2>
+    <p>{% if query_text %}Showing results for "{{ query_text }}"{% else %}Browse all available produce{% endif %}</p>
+</section>
+
+<section class="products-grid">
+    {% for p in products %}
+    <article class="product-card">
+        <div class="product-top">
+            <p class="seller">Sold by {{ p.farmer_name }}</p>
+            <span class="tag-green">Farm Fresh</span>
+        </div>
+        <h3>{{ p.name }}</h3>
+        <p class="price">Rs {{ p.price }}</p>
+        <p class="stock {% if p.quantity <= 0 %}stock-out{% endif %}">
+            {% if p.quantity > 0 %}
+                In stock: {{ p.quantity }}
+            {% else %}
+                Out of stock
+            {% endif %}
+        </p>
+
+        {% if session.get('role') == 'consumer' and p.quantity > 0 %}
+            <form method="post" action="{{ url_for('add_to_cart', pid=p.id) }}">
+                <button type="submit" class="full-btn">Add to Cart</button>
+            </form>
+        {% elif session.get('role') == 'consumer' and p.quantity <= 0 %}
+            <button disabled class="full-btn">Unavailable</button>
+        {% else %}
+            <a href="{{ url_for('login') }}"><button class="full-btn">Login to Buy</button></a>
+        {% endif %}
+    </article>
+    {% else %}
+    <p class="empty">No products found. Try a different search.</p>
+    {% endfor %}
+</section>
+{% endblock %}

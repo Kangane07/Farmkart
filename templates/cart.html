@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Cart{% endblock %}
+{% block content %}
+<section class="cart-layout">
+    <div>
+        <h2>Your Cart</h2>
+        {% if cart_items %}
+            <div class="cart-list">
+                {% for item in cart_items %}
+                <article class="cart-item">
+                    <div>
+                        <h3>{{ item.product.name }}</h3>
+                        <p>Unit Price: Rs {{ item.product.price }}</p>
+                        <p>Stock Available: {{ item.product.quantity }}</p>
+                    </div>
+                    <div class="qty-box">
+                        <p>Qty: <strong>{{ item.quantity }}</strong></p>
+                        <p>Subtotal: <strong>Rs {{ item.subtotal }}</strong></p>
+                        <div class="cart-actions">
+                            <form method="post" action="{{ url_for('update_cart', pid=item.product.id) }}">
+                                <input type="hidden" name="action" value="inc">
+                                <button type="submit" class="inline-btn">+</button>
+                            </form>
+                            <form method="post" action="{{ url_for('update_cart', pid=item.product.id) }}">
+                                <input type="hidden" name="action" value="dec">
+                                <button type="submit" class="inline-btn">-</button>
+                            </form>
+                            <form method="post" action="{{ url_for('update_cart', pid=item.product.id) }}">
+                                <input type="hidden" name="action" value="remove">
+                                <button type="submit" class="inline-btn danger-btn">Remove</button>
+                            </form>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="empty">Your cart is empty.</p>
+        {% endif %}
+    </div>
+
+    {% if cart_items %}
+    <aside class="order-summary">
+        <h3>Price Details</h3>
+        <p>Total Amount</p>
+        <p class="final-price">Rs {{ total }}</p>
+        <form method="post" action="{{ url_for('checkout') }}">
+            <button type="submit">Place Order</button>
+        </form>
+    </aside>
+    {% endif %}
+</section>
+{% endblock %}

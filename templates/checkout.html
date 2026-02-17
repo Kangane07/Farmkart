@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Order Confirmed{% endblock %}
+{% block content %}
+<section class="panel success-panel">
+    <h2>Order Confirmed</h2>
+    <p>Your order has been placed successfully.</p>
+    {% if order %}
+    <p><strong>Order ID:</strong> #{{ order.id }}</p>
+    <p><strong>Total Paid:</strong> Rs {{ order.total_amount }}</p>
+    {% endif %}
+    <div class="cart-actions">
+        <a href="{{ url_for('orders') }}"><button class="inline-btn">View My Orders</button></a>
+        <a href="{{ url_for('index') }}"><button class="inline-btn">Continue Shopping</button></a>
+    </div>
+</section>
+{% endblock %}

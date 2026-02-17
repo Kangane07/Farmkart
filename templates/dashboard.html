@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<section class="panel">
+    <h2>Welcome, {{ session.get('user', 'User') }}</h2>
+    <p>Role: <strong>{{ session.get('role', 'guest')|capitalize }}</strong></p>
+
+    {% if session.get('role') == 'farmer' %}
+        <a href="{{ url_for('add_product') }}"><button class="inline-btn">Add New Product</button></a>
+    {% elif session.get('role') == 'consumer' %}
+        <a href="{{ url_for('cart') }}"><button class="inline-btn">View Cart</button></a>
+    {% endif %}
+</section>
+
+{% if session.get('role') == 'farmer' %}
+<section class="panel">
+    <h3>Your Listings</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in farmer_products %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>Rs {{ item.price }}</td>
+                    <td>{{ item.quantity }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="3">No products added yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
