@@ -1,33 +1,35 @@
 # 🌾 FarmKart
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-FarmKart is a full-stack web application developed as a college project.  
+FarmKart is a full-stack web application developed as a college project.
 It connects farmers directly with consumers, allowing the sale of fresh vegetables and fruits without middlemen.
 
-The project demonstrates the integration of frontend, backend, and database concepts using Python and Flask.
+The project demonstrates frontend, backend, authentication, and database integration concepts using Python and Flask.
 
 ---
 
 ## 📌 Project Description
 
-FarmKart aims to solve the problem of intermediaries between farmers and consumers by providing a simple digital platform where:
+FarmKart provides a simple digital marketplace where:
 
-- Farmers can add and manage their products
-- Customers can browse products and place orders
-- Orders are handled in a structured and organized manner
+- Farmers can register and add products
+- Consumers can browse products and add items to cart
+- Consumers can checkout and place a basic purchase
 
 This project focuses on clarity, simplicity, and real-world applicability.
 
 ---
 
-## 🧩 Features
+## 🧩 Features (Current Scope)
 
-- User authentication (Farmer & Customer roles)
+- User registration/login with Farmer & Consumer roles
+- Password hashing for secure login storage
+- Role-based route protection
 - Product management by farmers
-- Product browsing for customers
-- Cart and checkout system
-- Order management
-- Clean and simple UI
+- Product browsing for consumers
+- Cart with quantity tracking and total amount
+- Basic checkout flow with stock reduction
+- Clean and simple UI with dark mode
 
 ---
 
@@ -36,6 +38,7 @@ This project focuses on clarity, simplicity, and real-world applicability.
 ### Backend
 - Python
 - Flask
+- Flask-SQLAlchemy
 
 ### Frontend
 - HTML
@@ -43,8 +46,8 @@ This project focuses on clarity, simplicity, and real-world applicability.
 - JavaScript
 
 ### Database
-- PostgreSQL
-- SQLite
+- SQLite (default for local setup)
+- PostgreSQL (optional via `DATABASE_URL`)
 
 ### Tools
 - VS Code
@@ -58,6 +61,7 @@ FarmKart/
 │── app.py
 │── models.py
 │── requirements.txt
+│── .env.example
 │── static/
 │   └── css/
 │       └── style.css
@@ -72,36 +76,36 @@ FarmKart/
 
 ---
 
-## 📊 Database Design (ER Diagram)
+## ▶️ How to Run the Project Locally
 
-The database design is based on the following entities:
-
-### Entities
-- **User** (Farmer / Customer)
-- **Product**
-- **Order**
-- **OrderItem**
-
-### Relationships
-- A user (farmer) can add multiple products
-- A customer can place multiple orders
-- An order can contain multiple products
-
-The ER diagram visually represents these relationships and was created as part of the project documentation.
+1. Clone the repository
+2. Open the project folder
+3. Create and activate a virtual environment
+4. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+5. Create environment file from sample:
+   ```bash
+   cp .env.example .env
+   ```
+6. Run the Flask app:
+   ```bash
+   python app.py
+   ```
+7. Open:
+   `http://127.0.0.1:5000/`
 
 ---
 
-## ▶️ How to Run the Project Locally
+## 🔐 Configuration
 
-1. Clone or download the repository
-2. Open the project folder in VS Code
-3. Create and activate a virtual environment
-4. Install required dependencies:
-pip install -r requirements.txt
-5. Run the Flask application:
-python app.py
-6. Open your browser and visit:
-http://127.0.0.1:5000/
+The app reads secrets from environment variables:
+
+- `SECRET_KEY` - Flask session key
+- `DATABASE_URL` - SQLAlchemy database URL
+
+Default in `.env.example` uses SQLite for easy local setup.
 
 ---
 
@@ -110,11 +114,9 @@ http://127.0.0.1:5000/
 This project uses Flask, which is a server-side framework.
 
 - GitHub Pages supports only static websites (HTML, CSS, JS)
-- Therefore, the Flask backend cannot be run directly on GitHub Pages
+- Therefore Flask backend cannot run directly on GitHub Pages
 
-For demonstration purposes, the project can be:
-- Run locally, or
-- Deployed on platforms like Render or PythonAnywhere
+For demonstration, deploy on Render, PythonAnywhere, or run locally.
 
 ---
 
@@ -123,21 +125,21 @@ For demonstration purposes, the project can be:
 This project was developed as part of a college curriculum to:
 - Understand full-stack web development
 - Learn Flask framework
-- Practice database modeling and ER diagrams
-- Apply MVC architecture concepts
+- Practice authentication and role-based access
+- Apply database and MVC concepts
 
 ---
 
 ## 👤 Author
 
-**Omkar Kangane**  
+**Omkar Kangane**
 College Project – FarmKart
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License.  
+This project is licensed under the MIT License.
 See the [LICENSE](LICENSE) file for details.
 
 ---
@@ -146,4 +148,3 @@ See the [LICENSE](LICENSE) file for details.
 
 - Project PPT available in `/docs`
 - Screenshots of the application in `/docs/screenshots`
-- ER Diagram included in `/docs`

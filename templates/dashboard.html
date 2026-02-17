@@ -29,6 +29,14 @@
 </nav>
 
 <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p class="flash flash-{{ category }}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <h2>Welcome, {{ session['user'] }}</h2>
 
     {% if session['role'] == 'farmer' %}
