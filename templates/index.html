@@ -23,11 +23,29 @@
     <h1>🌱 FarmKart</h1>
     <div>
         <a href="/">Home</a>
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
+        {% if session.get("user_id") %}
+            <a href="/dashboard">Dashboard</a>
+            {% if session.get("role") == "consumer" %}
+                <a href="/cart">Cart</a>
+            {% endif %}
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        {% endif %}
         <span class="toggle" onclick="toggleDark()">🌙</span>
     </div>
 </nav>
+
+<div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p class="flash flash-{{ category }}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
 
 <section class="hero">
     <h2>Fresh from Farm. Direct to You.</h2>
@@ -41,10 +59,10 @@
             <span class="badge">👨‍🌾 Farmer</span>
             <h3>{{ p.name }}</h3>
             <p>₹ {{ p.price }}</p>
-            <p>Qty: {{ p.quantity }}</p>
+            <p>Stock: {{ p.quantity }}</p>
             <p>By {{ p.farmer_name }}</p>
 
-            {% if session.get("role") == "consumer" %}
+            {% if session.get("role") == "consumer" and p.quantity > 0 %}
             <a href="/add_to_cart/{{ p.id }}">
                 <button>Add to Cart</button>
             </a>

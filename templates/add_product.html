@@ -21,15 +21,26 @@
 
 <nav>
     <h1>🌱 FarmKart</h1>
-    <span class="toggle" onclick="toggleDark()">🌙</span>
+    <div>
+        <a href="/dashboard">Dashboard</a>
+        <span class="toggle" onclick="toggleDark()">🌙</span>
+    </div>
 </nav>
 
 <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p class="flash flash-{{ category }}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <form method="post">
         <h2>Add Product</h2>
         <input name="name" placeholder="Product Name" required>
-        <input name="price" type="number" placeholder="Price" required>
-        <input name="quantity" type="number" placeholder="Quantity" required>
+        <input name="price" type="number" min="1" placeholder="Price" required>
+        <input name="quantity" type="number" min="1" placeholder="Quantity" required>
         <button>Add</button>
     </form>
 </div>
