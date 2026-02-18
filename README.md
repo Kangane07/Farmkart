@@ -1,32 +1,52 @@
 # FarmKart
 
-FarmKart is a Flask marketplace app connecting farmers and consumers.
+FarmKart is a role-based online marketplace that connects **farmers** and **consumers**. Farmers can list products, and consumers can browse, add items to cart, and place orders.
 
-## Implemented Scope
+## ✨ Features
 
-- User registration and login with hashed passwords.
-- Login validation and user-facing flash messages.
-- Role-based access guards:
-  - Farmers can add products.
-  - Consumers can add items to cart and checkout.
-- Session cart with quantity support, per-item subtotal, and grand total.
-- Checkout stock validation and inventory reduction after purchase.
-- Persistent order history (`My Orders`) with order items and totals.
-- Environment-based configuration using `.env`.
-- SQLAlchemy models centralized in `models.py`.
-- Marketplace-style responsive frontend (search bar, product grid, cart summary, farmer listing table).
-- Backward compatibility fixes for legacy data:
-  - old plain-text user passwords are upgraded to hashes after successful login.
-  - old cart session format (list) is auto-converted to quantity map.
+- User registration and login with secure password hashing
+- Role-based permissions:
+  - **Farmer**: add/manage products
+  - **Consumer**: browse products, manage cart, checkout
+- Session-based shopping cart with quantity handling
+- Checkout with stock validation and inventory updates
+- Order history with itemized order details
+- Flash messages for better user feedback
+- Responsive marketplace-style UI
+- Environment-based configuration via `.env`
+- Legacy compatibility helpers for old password/cart formats
 
-## Tech Stack
+## 🧰 Tech Stack
 
+### Frontend
+- HTML (Jinja templates)
+- CSS
+- Flask templating engine (server-rendered views)
+
+### Backend
+- Flask (Python web framework)
+- Flask-SQLAlchemy (ORM)
+- Session management via Flask session
+
+### Database
+- PostgreSQL (recommended for production)
+- SQLite (supported for local development)
+
+### Languages Used
 - Python
-- Flask
-- Flask-SQLAlchemy
-- PostgreSQL or SQLite
+- HTML
+- CSS
+- SQL (via SQLAlchemy/database engine)
 
-## Setup
+## 📁 Project Structure (high-level)
+
+- `app.py` — main Flask application and routes
+- `models.py` — SQLAlchemy models and relationships
+- `templates/` — frontend pages (Jinja + HTML)
+- `static/css/style.css` — styling
+- `requirements.txt` — Python dependencies
+
+## 🚀 Getting Started
 
 1. Create and activate a virtual environment.
 2. Install dependencies:
@@ -35,32 +55,37 @@ FarmKart is a Flask marketplace app connecting farmers and consumers.
 pip install -r requirements.txt
 ```
 
-3. Copy environment template and fill values:
-
-```bash
-copy .env.example .env
-```
-
-4. Update `.env`:
+3. Create `.env` from `.env.example` and add your values:
 
 ```env
 SECRET_KEY=your-secret
 DATABASE_URL=postgresql://username:password@localhost:5432/farmkart
 ```
 
-You can also use SQLite locally:
+For local SQLite usage:
 
 ```env
 DATABASE_URL=sqlite:///farmkart.db
 ```
 
-5. Run the app:
+4. Run the app:
 
 ```bash
 python app.py
 ```
 
-## Notes
+## ✅ Current Implemented Scope
 
-- Keep `.env` private. It is excluded by `.gitignore`.
-- If moving from plain-text passwords, existing user records should be recreated or migrated.
+- Authentication flow (register/login/logout)
+- Password hashing and validation
+- Product creation by farmers
+- Product listing and search-style browsing
+- Cart operations with quantity and totals
+- Checkout flow with stock reduction
+- Order history for users
+
+## 📌 Notes
+
+- Keep `.env` private and never commit secrets.
+- Use PostgreSQL for production workloads.
+- Legacy user/cart compatibility code is included to avoid data breaks.
